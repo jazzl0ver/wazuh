@@ -2341,6 +2341,7 @@ void test_wm_ms_graph_scan_relationships_single_unsuccessful_status_code(void **
     <enabled>yes</enabled>
     <only_future_events>no</only_future_events>
     <curl_max_size>1M</curl_max_size>
+    <page_size>50</page_size>
     <run_on_start>yes</run_on_start>
     <version>v1.0</version>
     <api_auth>
@@ -2362,6 +2363,7 @@ void test_wm_ms_graph_scan_relationships_single_unsuccessful_status_code(void **
     module_data->enabled = true;
     module_data->only_future_events = false;
     module_data->curl_max_size = 1024L;
+    module_data->page_size = 50;
     module_data->run_on_start = true;
     module_data->scan_config.interval = 60;
     os_strdup("v1.0", module_data->version);
@@ -2411,7 +2413,7 @@ void test_wm_ms_graph_scan_relationships_single_unsuccessful_status_code(void **
     will_return(__wrap_strftime, 20);
 
     expect_string(__wrap__mtdebug1, tag, "wazuh-modulesd:ms-graph");
-    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=100&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
+    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=50&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
 
     expect_any(__wrap_wurl_http_request, method);
     expect_any(__wrap_wurl_http_request, header);
@@ -2526,6 +2528,7 @@ void test_wm_ms_graph_scan_relationships_single_failed_parse(void **state) {
     <enabled>yes</enabled>
     <only_future_events>no</only_future_events>
     <curl_max_size>1M</curl_max_size>
+    <page_size>25</page_size>
     <run_on_start>yes</run_on_start>
     <version>v1.0</version>
     <api_auth>
@@ -2547,6 +2550,7 @@ void test_wm_ms_graph_scan_relationships_single_failed_parse(void **state) {
     module_data->enabled = true;
     module_data->only_future_events = false;
     module_data->curl_max_size = 1024L;
+    module_data->page_size = 25;
     module_data->run_on_start = true;
     module_data->scan_config.interval = 60;
     os_strdup("v1.0", module_data->version);
@@ -2597,7 +2601,7 @@ void test_wm_ms_graph_scan_relationships_single_failed_parse(void **state) {
     will_return(__wrap_strftime, 20);
 
     expect_string(__wrap__mtdebug1, tag, "wazuh-modulesd:ms-graph");
-    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=100&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
+    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=25&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
 
     expect_any(__wrap_wurl_http_request, method);
     expect_any(__wrap_wurl_http_request, header);
@@ -2721,6 +2725,7 @@ void test_wm_ms_graph_scan_relationships_single_success_one_log(void **state) {
     <enabled>yes</enabled>
     <only_future_events>no</only_future_events>
     <curl_max_size>1M</curl_max_size>
+    <page_size>10</page_size>
     <run_on_start>yes</run_on_start>
     <version>v1.0</version>
     <api_auth>
@@ -2742,6 +2747,7 @@ void test_wm_ms_graph_scan_relationships_single_success_one_log(void **state) {
     module_data->enabled = true;
     module_data->only_future_events = false;
     module_data->curl_max_size = 1024L;
+    module_data->page_size = 10;
     module_data->run_on_start = true;
     module_data->scan_config.interval = 60;
     os_strdup("v1.0", module_data->version);
@@ -2793,7 +2799,7 @@ void test_wm_ms_graph_scan_relationships_single_success_one_log(void **state) {
     will_return(__wrap_strftime, 20);
 
     expect_string(__wrap__mtdebug1, tag, "wazuh-modulesd:ms-graph");
-    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=100&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
+    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/security/alerts_v2?$top=10&$filter=createdDateTime+ge+2023-02-08T12:24:56Z+and+createdDateTime+lt+2023-02-08T12:25:56Z'");
 
     expect_any(__wrap_wurl_http_request, method);
     expect_any(__wrap_wurl_http_request, header);
@@ -2983,6 +2989,7 @@ void test_wm_ms_graph_scan_relationships_single_success_two_pages(void **state) 
     <enabled>yes</enabled>
     <only_future_events>no</only_future_events>
     <curl_max_size>1M</curl_max_size>
+    <page_size>200</page_size>
     <run_on_start>yes</run_on_start>
     <version>v1.0</version>
     <api_auth>
@@ -3002,6 +3009,7 @@ void test_wm_ms_graph_scan_relationships_single_success_two_pages(void **state) 
     module_data->enabled = true;
     module_data->only_future_events = false;
     module_data->curl_max_size = 1024L;
+    module_data->page_size = 200;
     module_data->run_on_start = true;
     module_data->scan_config.interval = 60;
     os_strdup("v1.0", module_data->version);
@@ -3041,7 +3049,7 @@ void test_wm_ms_graph_scan_relationships_single_success_two_pages(void **state) 
     os_strdup("test2", response2->header);
 
     expect_string(__wrap__mtdebug1, tag, "wazuh-modulesd:ms-graph");
-    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/deviceManagement/managedDevices?$top=100'");
+    expect_string(__wrap__mtdebug1, formatted_msg, "Microsoft Graph API Log URL: 'https://graph.microsoft.com/v1.0/deviceManagement/managedDevices?$top=200'");
 
     expect_any(__wrap_wurl_http_request, method);
     expect_any(__wrap_wurl_http_request, header);
