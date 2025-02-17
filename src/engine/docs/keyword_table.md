@@ -1,6 +1,10 @@
 # By Keyword
 | Helper | Keywords |
 | ------ | -------- |
+| [array_contains](documentation.md#array_contains) | array |
+| [array_contains_any](documentation.md#array_contains_any) | array |
+| [array_not_contains](documentation.md#array_not_contains) | array |
+| [array_not_contains_any](documentation.md#array_not_contains_any) | array |
 | [binary_and](documentation.md#binary_and) | undefined |
 | [contains](documentation.md#contains) | undefined |
 | [ends_with](documentation.md#ends_with) | string |
@@ -8,6 +12,7 @@
 | [exists_key_in](documentation.md#exists_key_in) | undefined |
 | [int_equal](documentation.md#int_equal) | comparison, integer |
 | [int_greater](documentation.md#int_greater) | comparison, integer |
+| [int_greater_or_equal](documentation.md#int_greater_or_equal) | comparison, integer |
 | [int_less](documentation.md#int_less) | comparison, integer |
 | [int_less_or_equal](documentation.md#int_less_or_equal) | comparison, integer |
 | [int_not_equal](documentation.md#int_not_equal) | comparison, integer |

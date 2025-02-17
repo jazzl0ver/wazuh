@@ -1,0 +1,106 @@
+# Name of the helper function
+name: array_not_contains_any
+
+metadata:
+  description: |
+    Checks whether none of the provided elements are present in a given array.
+    It supports multiple data types, including objects, arrays, numbers, strings, and boolean values.
+    As a variadic function, it accepts multiple elements as search arguments.
+    A test passes if none of the provided elements exist in the target array.
+    If at least one element is found, the validation fails.
+    This behavior makes it useful for filtering lists to exclude specific values.
+
+  keywords:
+    - array
+
+helper_type: filter
+
+# Indicates whether the helper function supports a variable number of arguments
+is_variadic: true
+
+# Arguments expected by the helper function
+arguments:
+  element:
+    type:
+      - object
+      - array
+      - number
+      - string
+      - boolean
+    source: both # includes values or references (their names start with $)
+
+# do not compare with target field to avoid failure
+skipped:
+  - success_cases
+
+target_field:
+  type: array
+  generate: all
+
+test:
+  - arguments:
+      element: dracut
+      element_1: vz-start
+      element_2: thin-provisioning-tools
+    target_field:
+      - mkinitramfs
+      - cryptroot
+      - framebuffer
+      - dracut
+      - thin-provisioning-tools
+      - lvm2
+      - vz-start
+    should_pass: false
+    description: The test fails because at least one of the specified elements is present in the target array.
+
+  - arguments:
+      element: wazuh
+      element_1: non-existent-1
+      element_2: non-existent-2
+    target_field:
+      - mkinitramfs
+      - cryptroot
+      - framebuffer
+      - dracut
+      - thin-provisioning-tools
+      - lvm2
+      - vz-start
+    should_pass: true
+    description: None of the specified elements are present in the target array.
+
+  - arguments:
+      element: 10
+      element_1: 8
+      element_2: 6
+    target_field:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    should_pass: true
+    description: None of the specified numbers are present in the target array.
+
+  - arguments:
+      element:
+        key: value
+      element_1:
+        key1: value1
+      element_2:
+        keyn: valuen
+    target_field:
+      - keyX: valueX
+      - keyY: valueY
+      - keyZ: valueZ
+    should_pass: true
+    description: None of the specified objects are present in the target array.
+
+  - arguments:
+      element:
+        key: value
+    target_field:
+      - key: value
+      - 1000
+      - value
+    should_pass: false
+    description: The test fails because at least one of the specified elements is present in the target array.

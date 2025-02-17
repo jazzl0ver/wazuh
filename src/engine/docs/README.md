@@ -3,6 +3,10 @@ This documentation provides an overview of the auxiliary functions available. Au
 
 # Index
 ## Filter
+- [array_contains](#array_contains)
+- [array_contains_any](#array_contains_any)
+- [array_not_contains](#array_not_contains)
+- [array_not_contains_any](#array_not_contains_any)
 - [binary_and](#binary_and)
 - [contains](#contains)
 - [ends_with](#ends_with)
@@ -10,6 +14,7 @@ This documentation provides an overview of the auxiliary functions available. Au
 - [exists_key_in](#exists_key_in)
 - [int_equal](#int_equal)
 - [int_greater](#int_greater)
+- [int_greater_or_equal](#int_greater_or_equal)
 - [int_less](#int_less)
 - [int_less_or_equal](#int_less_or_equal)
 - [int_not_equal](#int_not_equal)
@@ -98,6 +103,158 @@ This documentation provides an overview of the auxiliary functions available. Au
 - [sca_decoder](#sca_decoder)
 - [split](#split)
 - [trim](#trim)
+# array_contains
+
+## Signature
+
+```
+
+field: array_contains(element, [...])
+```
+
+## Arguments
+
+| parameter | Type | Source | Accepted values |
+| --------- | ---- | ------ | --------------- |
+| element | object, array, number, string, boolean | value or reference | Any object |
+
+
+## Target Field
+
+| Type | Possible values |
+| ---- | --------------- |
+| array | [number, string, boolean, object, array] |
+
+
+## Description
+
+Checks whether one or more elements are present in a given array.
+It supports multiple data types, including objects, arrays, numbers, strings, and boolean values.
+As a variadic function, it accepts multiple elements as search arguments.
+A test passes if all provided elements exist in the target array.
+If at least one element is missing, the validation fails.
+This behavior makes it useful for filtering lists based on the presence of specific values.
+
+
+**Keywords**
+
+- `array` 
+
+---
+# array_contains_any
+
+## Signature
+
+```
+
+field: array_contains_any(element, [...])
+```
+
+## Arguments
+
+| parameter | Type | Source | Accepted values |
+| --------- | ---- | ------ | --------------- |
+| element | object, array, number, string, boolean | value or reference | Any object |
+
+
+## Target Field
+
+| Type | Possible values |
+| ---- | --------------- |
+| array | [number, string, boolean, object, array] |
+
+
+## Description
+
+Checks whether at least one of the provided elements is present in a given array.
+It supports multiple data types, including objects, arrays, numbers, strings, and boolean values.
+As a variadic function, it accepts multiple elements as search arguments.
+A test passes if at least one provided element exists in the target array.
+If none of the elements are found, the validation fails.
+This behavior makes it useful for filtering lists based on partial matches.
+
+
+**Keywords**
+
+- `array` 
+
+---
+# array_not_contains
+
+## Signature
+
+```
+
+field: array_not_contains(element, [...])
+```
+
+## Arguments
+
+| parameter | Type | Source | Accepted values |
+| --------- | ---- | ------ | --------------- |
+| element | object, array, number, string, boolean | value or reference | Any object |
+
+
+## Target Field
+
+| Type | Possible values |
+| ---- | --------------- |
+| array | [number, string, boolean, object, array] |
+
+
+## Description
+
+Determines whether one or more elements are absent from a given array.
+It supports multiple data types, including objects, arrays, numbers, strings, and boolean values.
+As a variadic function, it accepts multiple elements as search arguments.
+A test passes if none of the provided elements exist in the target array.
+If at least one element is found in the array, the validation fails.
+This behavior is useful for filtering lists by excluding specific values.
+
+
+**Keywords**
+
+- `array` 
+
+---
+# array_not_contains_any
+
+## Signature
+
+```
+
+field: array_not_contains_any(element, [...])
+```
+
+## Arguments
+
+| parameter | Type | Source | Accepted values |
+| --------- | ---- | ------ | --------------- |
+| element | object, array, number, string, boolean | value or reference | Any object |
+
+
+## Target Field
+
+| Type | Possible values |
+| ---- | --------------- |
+| array | [number, string, boolean, object, array] |
+
+
+## Description
+
+Checks whether none of the provided elements are present in a given array.
+It supports multiple data types, including objects, arrays, numbers, strings, and boolean values.
+As a variadic function, it accepts multiple elements as search arguments.
+A test passes if none of the provided elements exist in the target array.
+If at least one element is found, the validation fails.
+This behavior makes it useful for filtering lists to exclude specific values.
+
+
+**Keywords**
+
+- `array` 
+
+---
 # binary_and
 
 ## Signature
@@ -328,6 +485,43 @@ field: int_greater(any_number)
 ## Description
 
 Checkers whether the integer number stored in field is greater than to the one provided.
+If they're not, the function evaluates to false. In case of error, the function will evaluate to false.
+This helper function is typically used in the check stage
+
+
+**Keywords**
+
+- `integer` 
+
+- `comparison` 
+
+---
+# int_greater_or_equal
+
+## Signature
+
+```
+
+field: int_greater_or_equal(any_number)
+```
+
+## Arguments
+
+| parameter | Type | Source | Accepted values |
+| --------- | ---- | ------ | --------------- |
+| any_number | number | value or reference | Integers between `-2^63` and `2^63-1` |
+
+
+## Target Field
+
+| Type | Possible values |
+| ---- | --------------- |
+| number | Integers between `-2^63` and `2^63-1` |
+
+
+## Description
+
+Checkers whether the integer number stored in field is greater than or equal to the one provided.
 If they're not, the function evaluates to false. In case of error, the function will evaluate to false.
 This helper function is typically used in the check stage
 
